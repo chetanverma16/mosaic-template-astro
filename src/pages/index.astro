@@ -9,9 +9,9 @@ import BlogCard from "../components/BlogCard/index.astro";
 // Layout
 import Main from "../layouts/main.astro";
 
-const posts = (await getCollection("blog"))
-  .sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
-  .splice(0, 3);
+const posts = (await getCollection("blog")).sort(
+  (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+);
 ---
 
 <Main
@@ -48,15 +48,17 @@ const posts = (await getCollection("blog"))
 
       <div class="grid grid-cols-3 py-4 gap-4">
         {
-          posts.map((post) => (
-            <BlogCard
-              key={post.id}
-              href={`/blog/${post.slug}`}
-              title={post.data.title}
-              description={post.data.description}
-              src={post.data.heroImage}
-            />
-          ))
+          posts
+            .splice(0, 3)
+            .map((post) => (
+              <BlogCard
+                key={post.id}
+                href={`/blog/${post.slug}`}
+                title={post.data.title}
+                description={post.data.description}
+                src={post.data.heroImage}
+              />
+            ))
         }
       </div>
     </section>

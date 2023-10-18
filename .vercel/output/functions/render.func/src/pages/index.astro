@@ -1,0 +1,64 @@
+---
+import { Icon } from "astro-icon";
+import { getCollection } from "astro:content";
+
+// Component
+import Link from "../components/Link/index.astro";
+import BlogCard from "../components/BlogCard/index.astro";
+
+// Layout
+import Main from "../layouts/main.astro";
+
+const posts = (await getCollection("blog"))
+  .sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
+  .splice(0, 3);
+---
+
+<Main
+  title="Mosaic"
+  description="I'm Mosaic theme, a front-end designer with over a decade of experience. My passion lies in crafting intuitive and user-friendly web and mobile interfaces."
+>
+  <>
+    <section class="flex flex-col gap-y-3 py-6">
+      <h1 class="text-4xl">A collection of my <span>insights</span></h1>
+      <div class="flex flex-col gap-y-2 text-gray-500 max-w-2xl">
+        <p>
+          I'm Mosaic theme, a front-end designer with over a decade of
+          experience. My passion lies in crafting intuitive and user-friendly
+          web and mobile interfaces.
+        </p>
+        <p>
+          Currently, I'm part of the innovative team at Webmakers Studio, where
+          I harness the power of front-end tools like React, Astro, Vue, Svelte,
+          and Alpinejs to create cutting-edge solutions.
+        </p>
+        <p>
+          My prior experience includes a pivotal role at Webmakers Studio, where
+          I contributed to themes and wallpapers that empowered small businesses
+          online. Outside work, you'll find me riding the waves of the
+          Mediterranean Sea and actively contributing to open-source projects.
+        </p>
+      </div>
+    </section>
+    <section class="flex flex-col gap-y-2">
+      <div class="flex items-center justify-between">
+        <h2>Latest articles</h2>
+        <Link>View all <Icon name="lucide:chevron-right" class="h-4" /></Link>
+      </div>
+
+      <div class="grid grid-cols-3 py-4 gap-4">
+        {
+          posts.map((post) => (
+            <BlogCard
+              key={post.id}
+              href={`/blog/${post.slug}`}
+              title={post.data.title}
+              description={post.data.description}
+              src={post.data.heroImage}
+            />
+          ))
+        }
+      </div>
+    </section>
+  </>
+</Main>

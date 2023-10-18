@@ -9,9 +9,9 @@ import BlogCard from "../components/BlogCard/index.astro";
 // Layout
 import Main from "../layouts/main.astro";
 
-const posts = (await getCollection("blog")).filter(
-  (post) => post.data.featured === true
-);
+const posts = (await getCollection("blog"))
+  .filter((post) => post.data.featured === true)
+  .sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf());
 ---
 
 <Main

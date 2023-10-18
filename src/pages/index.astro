@@ -9,8 +9,8 @@ import BlogCard from "../components/BlogCard/index.astro";
 // Layout
 import Main from "../layouts/main.astro";
 
-const posts = (await getCollection("blog")).sort(
-  (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+const posts = (await getCollection("blog")).filter(
+  (post) => post.data.featured === true
 );
 ---
 
@@ -42,23 +42,23 @@ const posts = (await getCollection("blog")).sort(
     </section>
     <section class="flex flex-col gap-y-2">
       <div class="flex items-center justify-between">
-        <h2>Latest articles</h2>
+        <h2>
+          Featured <span>posts</span>
+        </h2>
         <Link>View all <Icon name="lucide:chevron-right" class="h-4" /></Link>
       </div>
 
       <div class="grid grid-cols-3 py-4 gap-4">
         {
-          posts
-            .splice(0, 3)
-            .map((post) => (
-              <BlogCard
-                key={post.id}
-                href={`/blog/${post.slug}`}
-                title={post.data.title}
-                description={post.data.description}
-                src={post.data.heroImage}
-              />
-            ))
+          posts.map((post) => (
+            <BlogCard
+              key={post.id}
+              href={`/blog/${post.slug}`}
+              title={post.data.title}
+              description={post.data.description}
+              src={post.data.heroImage}
+            />
+          ))
         }
       </div>
     </section>

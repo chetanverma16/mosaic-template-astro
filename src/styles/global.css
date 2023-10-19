@@ -4,3 +4,97 @@ body {
     @apply mx-auto max-w-4xl w-full py-6;
     font-family: 'Poppins', sans-serif;
 }
+
+
+/* Blog Article Styles */
+article h1{
+    @apply text-3xl font-bold text-gray-900 mb-2;
+}
+
+article h2{
+    @apply text-2xl font-bold text-gray-900 mb-2;
+}
+
+article h3{
+    @apply text-xl font-bold text-gray-900 mb-2;
+}
+
+article h4{
+    @apply text-lg font-bold text-gray-900 mb-2;
+}
+
+article h5{
+    @apply text-base font-bold text-gray-900 mb-2;
+}
+
+article h6{
+    @apply text-sm font-bold text-gray-900 mb-2;
+}
+
+article p{
+    @apply text-gray-800 leading-relaxed;
+}
+
+article pre {
+    @apply bg-gray-100 p-4;
+}
+
+article code {
+    @apply text-sm bg-transparent font-mono;
+}
+
+article img {
+    @apply mx-auto my-6 h-96 w-full object-cover;
+}
+
+article ul {
+    @apply list-disc list-inside;
+}
+
+
+article ul ul {
+    @apply list-disc list-inside ml-4;
+}
+
+article ol {
+    @apply list-decimal list-inside;
+}
+
+article ol ol {
+    @apply list-decimal list-inside ml-4;
+}
+
+article li {
+    @apply text-gray-800;
+}
+
+article a {
+    @apply text-blue-500 hover:text-blue-600;
+}
+
+article blockquote {
+    @apply border-l-4 border-gray-300 italic my-8 pl-4;
+}
+
+article blockquote p {
+    @apply italic;
+}
+
+article hr {
+    @apply my-8;
+}
+
+article table {
+    @apply w-full border-collapse border border-gray-300 my-8;
+}
+
+article table td, article table th {
+    @apply border border-gray-300 px-4 py-2;
+}
+
+article table th {
+    @apply bg-gray-100;
+}
+
+
+

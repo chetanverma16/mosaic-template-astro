@@ -45,7 +45,9 @@ const posts = (await getCollection("blog"))
         <h2>
           Featured <span>posts</span>
         </h2>
-        <Link>View all <Icon name="lucide:chevron-right" class="h-4" /></Link>
+        <Link href="/blog">
+          View all <Icon name="lucide:chevron-right" class="h-4" />
+        </Link>
       </div>
 
       <div class="grid grid-cols-3 py-4 gap-4">

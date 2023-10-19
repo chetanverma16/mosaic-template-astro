@@ -1,3 +1,44 @@
 ---
+import { getCollection } from "astro:content";
 
+import Main from "../../layouts/main.astro";
+import Button from "../../components/Button/index.astro";
+import BlogCard from "../../components/BlogCard/index.astro";
+
+const posts = await getCollection("blog");
 ---
+
+<Main title="Blog">
+  <section class="flex flex-col gap-y-6 py-6">
+    <h1 class="text-4xl">Blog.</h1>
+    <form action="" class="flex items-center gap-x-2">
+      <input
+        type="text"
+        class="p-2 w-64 border border-gray-200"
+        placeholder="enter your email"
+      />
+      <Button type="submit" intent="primary">Subscribe</Button>
+    </form>
+  </section>
+  <section class="flex flex-col gap-y-2 py-10">
+    <div class="flex items-center justify-between">
+      <h2>
+        All <span>posts</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-3 py-4 gap-4">
+      {
+        posts.map((post) => (
+          <BlogCard
+            key={post.id}
+            href={`/blog/${post.slug}`}
+            title={post.data.title}
+            description={post.data.description}
+            src={post.data.heroImage}
+          />
+        ))
+      }
+    </div>
+  </section>
+</Main>

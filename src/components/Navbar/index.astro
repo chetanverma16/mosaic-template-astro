@@ -2,10 +2,21 @@
 import Button from "../Button/index.astro";
 ---
 
+<script>
+  if (document) {
+    const buyButton = document.getElementById("buy");
+    if (buyButton) {
+      buyButton.addEventListener("click", () => {
+        window.open("https://h99.io/aKiv", "_blank");
+      });
+    }
+  }
+</script>
+
 <header class="flex items-center gap-x-2 justify-between">
   <a href="/" class="text-xl">Mosaic.</a>
   <nav class="flex items-center gap-x-4">
     <a class="p-2 hover:bg-gray-50" href="/blog">All posts</a>
-    <Button>Buy Mosaic</Button>
+    <Button id="buy">Buy Mosaic</Button>
   </nav>
 </header>
